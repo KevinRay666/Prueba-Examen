@@ -23,7 +23,7 @@ app.listen(port, () =>{
 })
 
 app.get("/alumnos",(req,res) => {
-    con.query("select * from alumno",
+    con.query("select * from `Alumno`",
     function (err,result){
         if(err) {throw err}
         res.status(200).json(result)
@@ -40,7 +40,8 @@ app.post("/alumnos",(req,res) => {
             apemat:req.body.apemat
     }
 
-    let insert = "insert into alumno set ?"
+    let insert = "insert into `Alumno` set ?"
+    //let insert = "INSERT INTO `Alumno` (id, nombre, apepat, apemat) VALUES (?,?,?,?)"
     con.query(insert,alumno,
     function (err,result){
         if(err) {throw err}
